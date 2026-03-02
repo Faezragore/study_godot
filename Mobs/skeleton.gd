@@ -16,13 +16,13 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction.x * speed
 			anim.play("Run")
 		else:
-			velocity.x = 0	
+			velocity.x = 0
 			anim.play("Idle")
 		if direction.x < 0:
 			$AnimatedSprite2D.flip_h = true
 		else:
 			$AnimatedSprite2D.flip_h = false
-	
+
 	move_and_slide()
 
 func _on_detector_body_entered(body: Node2D) -> void:
@@ -39,7 +39,13 @@ func _on_death_body_entered(body: Node2D) -> void:
 	if body.name == "Player2":
 		body.velocity.y -= 300
 		death()
-		
+
+func _on_death_2_body_entered(body: Node2D) -> void:
+	if body.name == "Player2":
+		if alive == true:
+			body.health -= 40
+		death()	
+
 func death ():
 	alive = false
 	anim.play("Death")

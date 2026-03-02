@@ -83,9 +83,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6nj54")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
-"speed": 12.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -131,6 +131,9 @@ radius = 81.00617
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hjwy"]
 size = Vector2(8.5, 3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1f85"]
+size = Vector2(20, 3)
+
 [node name="Skeleton" type="CharacterBody2D" unique_id=86214093]
 script = ExtResource("1_7hjwy")
 
@@ -139,7 +142,6 @@ position = Vector2(-3, -2)
 scale = Vector2(0.7416667, 0.61833334)
 sprite_frames = SubResource("SpriteFrames_bwne6")
 animation = &"Death"
-frame_progress = 0.96402186
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1495114108]
 position = Vector2(0, -1.1920929e-07)
@@ -158,6 +160,12 @@ shape = SubResource("CircleShape2D_k1f85")
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_7hjwy")
 
+[node name="Death2" type="Area2D" parent="." unique_id=1932991753]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death2" unique_id=1774346929]
+shape = SubResource("RectangleShape2D_k1f85")
+
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
 [connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
+[connection signal="body_entered" from="Death2" to="." method="_on_death_2_body_entered"]

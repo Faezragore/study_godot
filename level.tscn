@@ -422,6 +422,20 @@ texture = ExtResource("5_km5ld")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0b4ue")
 
+[sub_resource type="GDScript" id="GDScript_0b4ue"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"HP: \" + str($\"../../Player/Player2\".health)
+"
+
 [node name="Level" type="Node2D" unique_id=1458939364]
 
 [node name="BG" parent="." unique_id=1895825911 instance=ExtResource("2_oi3di")]
@@ -434,9 +448,26 @@ tile_set = SubResource("TileSet_f2txt")
 [node name="Player" type="Node2D" parent="." unique_id=35503745]
 
 [node name="Player2" parent="Player" unique_id=1022324458 instance=ExtResource("6_1ainy")]
-position = Vector2(26, 29)
+position = Vector2(32, 426)
 
 [node name="Mobs" type="Node2D" parent="." unique_id=717861387]
 
 [node name="Skeleton" parent="Mobs" unique_id=86214093 instance=ExtResource("4_0b4ue")]
 position = Vector2(249, 511)
+
+[node name="Skeleton2" parent="Mobs" unique_id=533048643 instance=ExtResource("4_0b4ue")]
+position = Vector2(534, 508)
+
+[node name="Skeleton3" parent="Mobs" unique_id=786499174 instance=ExtResource("4_0b4ue")]
+position = Vector2(905, 511)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=109273339]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=678568517]
+offset_left = 46.0
+offset_top = 25.0
+offset_right = 201.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 30
+text = "HP"
+script = SubResource("GDScript_0b4ue")
