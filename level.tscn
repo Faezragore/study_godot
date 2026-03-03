@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bw5ptv1asgiru" path="res://bg.tscn" id="2_oi3di"]
 [ext_resource type="PackedScene" uid="uid://75lgg2ktxfuu" path="res://Mobs/skeleton.tscn" id="4_0b4ue"]
+[ext_resource type="PackedScene" uid="uid://dtotsieem36rw" path="res://Collections/gold.tscn" id="5_f2txt"]
 [ext_resource type="Texture2D" uid="uid://d2agwpbb0q1e8" path="res://oak_woods_v1.0/oak_woods_v1.0/oak_woods_tileset.png" id="5_km5ld"]
 [ext_resource type="PackedScene" uid="uid://32tp2f1dyka" path="res://player2/player_2.tscn" id="6_1ainy"]
 
@@ -436,6 +437,20 @@ func _process(delta: float) -> void:
 	text = \"HP: \" + str($\"../../Player/Player2\".health)
 "
 
+[sub_resource type="GDScript" id="GDScript_f2txt"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"GOLD: \" + str($\"../../Player/Player2\".gold)
+"
+
 [node name="Level" type="Node2D" unique_id=1458939364]
 
 [node name="BG" parent="." unique_id=1895825911 instance=ExtResource("2_oi3di")]
@@ -471,3 +486,17 @@ offset_bottom = 90.0
 theme_override_font_sizes/font_size = 30
 text = "HP"
 script = SubResource("GDScript_0b4ue")
+
+[node name="Label2" type="Label" parent="CanvasLayer" unique_id=1041944159]
+offset_left = 50.0
+offset_top = 67.0
+offset_right = 127.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 30
+text = "GOLD"
+script = SubResource("GDScript_f2txt")
+
+[node name="Collections" type="Node2D" parent="." unique_id=325231605]
+
+[node name="Gold" parent="Collections" unique_id=792936271 instance=ExtResource("5_f2txt")]
+position = Vector2(118, 533)

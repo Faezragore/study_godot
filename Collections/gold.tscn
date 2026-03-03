@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dtotsieem36rw"]
+
+[ext_resource type="Script" uid="uid://drhqyyhm8anoi" path="res://Collections/gold.gd" id="1_b774e"]
+[ext_resource type="Texture2D" uid="uid://d17l7v0olnrvo" path="res://oak_woods_v1.0/oak_woods_v1.0/MonedaD.png" id="1_cm2hx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b774e"]
+atlas = ExtResource("1_cm2hx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0qoq"]
+atlas = ExtResource("1_cm2hx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2136i"]
+atlas = ExtResource("1_cm2hx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h0st"]
+atlas = ExtResource("1_cm2hx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1qqi"]
+atlas = ExtResource("1_cm2hx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3kbq0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b774e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0qoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2136i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h0st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1qqi")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bu5b7"]
+radius = 4.0
+
+[node name="Gold" type="Area2D" unique_id=792936271]
+script = ExtResource("1_b774e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=349228150]
+position = Vector2(0, -5.9604645e-08)
+scale = Vector2(0.79296875, 0.5273438)
+sprite_frames = SubResource("SpriteFrames_3kbq0")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.5733536
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1068975555]
+shape = SubResource("CircleShape2D_bu5b7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
