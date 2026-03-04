@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bw5ptv1asgiru" path="res://bg.tscn" id="2_oi3di"]
 [ext_resource type="PackedScene" uid="uid://75lgg2ktxfuu" path="res://Mobs/skeleton.tscn" id="4_0b4ue"]
-[ext_resource type="PackedScene" uid="uid://dtotsieem36rw" path="res://Collections/gold.tscn" id="5_f2txt"]
 [ext_resource type="Texture2D" uid="uid://d2agwpbb0q1e8" path="res://oak_woods_v1.0/oak_woods_v1.0/oak_woods_tileset.png" id="5_km5ld"]
 [ext_resource type="PackedScene" uid="uid://32tp2f1dyka" path="res://player2/player_2.tscn" id="6_1ainy"]
 
@@ -451,6 +450,19 @@ func _process(delta: float) -> void:
 	text = \"GOLD: \" + str($\"../../Player/Player2\".gold)
 "
 
+[sub_resource type="GDScript" id="GDScript_1ainy"]
+script/source = "extends Node2D
+
+var gold = preload(\"res://Collections/gold.tscn\")
+
+func _on_timer_timeout() -> void:
+	var goldTemp = gold.instantiate()
+	var rng = RandomNumberGenerator.new()
+	var randint = randi_range(50, 500)
+	goldTemp.position = Vector2(randint,535)
+	add_child(goldTemp)
+"
+
 [node name="Level" type="Node2D" unique_id=1458939364]
 
 [node name="BG" parent="." unique_id=1895825911 instance=ExtResource("2_oi3di")]
@@ -497,6 +509,9 @@ text = "GOLD"
 script = SubResource("GDScript_f2txt")
 
 [node name="Collections" type="Node2D" parent="." unique_id=325231605]
+script = SubResource("GDScript_1ainy")
 
-[node name="Gold" parent="Collections" unique_id=792936271 instance=ExtResource("5_f2txt")]
-position = Vector2(118, 533)
+[node name="Timer" type="Timer" parent="Collections" unique_id=537018887]
+autostart = true
+
+[connection signal="timeout" from="Collections/Timer" to="Collections" method="_on_timer_timeout"]
